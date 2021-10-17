@@ -28,12 +28,12 @@ public class ClientCase {
 	@GeneratedValue
 	private Long id;
 	
-	private String customerName;
+	private String clientName;
 	private String reference;
 
 	private LocalDateTime dtcreate = LocalDateTime.now();
 	
-	@OneToMany
+	@OneToMany(mappedBy = "clientCase")
 	private List<Message> messages;
 }
 

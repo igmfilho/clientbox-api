@@ -7,6 +7,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,7 @@ import lombok.ToString;
 
 /**
  * Entity for message.
- * @author ivan.filho
+ * @authorName ivan.filho
  */
 @Entity
 @Setter
@@ -28,11 +30,14 @@ public class Message {
 	@GeneratedValue
 	private Long id;
 	
-	private String author;
+	private String authorName;
 	private String content;
+	
 	@Enumerated(value = EnumType.STRING)
 	private Channel channel;
-
 	private LocalDateTime dtcreate = LocalDateTime.now();
-
+	
+	@ManyToOne
+    @JoinColumn(name="client_case_id")
+    private ClientCase clientCase;
 }
