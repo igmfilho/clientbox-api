@@ -47,7 +47,7 @@ mvn package
 
 It will build the solution in the folder "target".
 
-To start the application, execute the commande:
+To start the application, execute the command:
 
 ```
 java -jar clientbox-api-0.0.1-SNAPSHOT.jar
@@ -55,7 +55,43 @@ java -jar clientbox-api-0.0.1-SNAPSHOT.jar
 
 The application will be starting on port 8080.
 
+### Testing Scenario's steps
+
+The curl commands for the test scenario are:
+
+#step 01
+```
+curl -X POST -H "Content-Type: application/json" -d '{"authorName":"J\u00e9r\u00e9mie Durand", "content":"Hello, I have an issue with my new phone", "channel":"SMS"}' http://localhost:8080/messages
+```
+
+#step 02
+```
+curl -X POST -H "Content-Type: application/json" -d '{"clientName":"J\u00e9r\u00e9mie Durand"}' http://localhost:8080/messages/1/client
+```
+
+#step 03
+```
+curl -X POST -H "Content-Type: application/json" -d '{"authorName":"Sonia Valentin", "content":"I am Sonia, and I will do my best to help you. What is your phone brand and model?", "channel":"TWITTER"}' http://localhost:8080/messages
+```
+
+```
+curl -i -X PUT -H "Content-Type:text/uri-list" -d "http://localhost:8080/clientCases/1" http://localhost:8080/messages/2/clientCase
+```
 
 
+#step 04
+```
+curl -i -X PATCH -H "Content-Type: application/json" -d '{"reference":"KA-18B6"}' http://localhost:8080/clientCases/1
+```
+
+#step 05
+```
+curl http://localhost:8080/clientCases
+```
+
+### Unit tests / Integration tests
+
+Also, the scenario has been implemented as an integration test in the class: ClientBoxApiApplicationTests
+You can execute the tests with the maven command: mvn test
 
 
