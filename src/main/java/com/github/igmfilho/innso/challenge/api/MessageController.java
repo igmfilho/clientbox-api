@@ -27,7 +27,7 @@ import com.github.igmfilho.innso.challenge.repository.MessageRepository;
  *
  */
 @RestController
-@RequestMapping("/messages")
+@RequestMapping("/messages-custom")
 public class MessageController {
 	
 	@Autowired
