@@ -21,13 +21,13 @@ import com.github.igmfilho.innso.challenge.repository.ClientCaseRepository;
 import com.github.igmfilho.innso.challenge.repository.MessageRepository;
 
 /**
- * Customizing resource to support requests for linked relationship with Client Case.
+ * Customizing message resource to support requests for linked relationship with Client Case.
  * 
  * @author ivan.filho
  *
  */
 @RestController
-@RequestMapping("/messages-custom")
+@RequestMapping(value = "/messages", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MessageController {
 	
 	@Autowired
@@ -36,12 +36,12 @@ public class MessageController {
 	@Autowired
 	private MessageRepository messageRepository;
 	
-	@PostMapping(value = "/{messageId}/clientCase", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping("/{messageId}/client")
 	@Transactional
 	public ResponseEntity<?> save(@RequestBody ClientCase clientCase, @PathVariable Long messageId) {
 		Message message = messageRepository.findById(messageId).orElseThrow(ResourceNotFoundException::new);
 
-		// Client case
+		// Linking Client Case with the message
 		clientCase.setMessages(List.of(message));
 		ClientCase saved = clientCaseRepository.save(clientCase);
 		

@@ -13,5 +13,4 @@ public class ClientBoxApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ClientBoxApiApplication.class, args);
 	}
-
 }

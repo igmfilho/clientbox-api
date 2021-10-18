@@ -93,7 +93,7 @@ class ClientBoxApiApplicationTests {
 	 */
 	@Test
 	@Order(2)
-	public void givingMessageMail_thenResourceShouldBeCreated(CapturedOutput output) throws Exception {
+	public void givingMessageMail_thenResourceShouldBeCreated() throws Exception {
 		Message message = new Message();
 		message.setAuthorName("Jérémie Durand");
 		message.setContent("Hello, I have an issue with my new phone");
@@ -129,7 +129,7 @@ class ClientBoxApiApplicationTests {
 		ClientCase clientCase = new ClientCase();
 		clientCase.setClientName("Jérémie Durand");
 
-		mockMvc.perform(post(clientCaseRelLinkFromMessageResource.replace("messages", "messages-custom"))
+		mockMvc.perform(post(clientCaseRelLinkFromMessageResource.replace("clientCase","client"))
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(clientCase))
 				)
@@ -245,7 +245,7 @@ class ClientBoxApiApplicationTests {
 	 */
 	@Test
 	@Order(6) 
-	public void whenRequestClientResources_thenResultShoudBeAll() throws Exception {
+	public void whenRequestClientResources_thenResultShouldContainAllClients() throws Exception {
 		
 		ResultActions resultClientCase = mockMvc.perform(get(CLIENT_CASES_RESOURCE))
 				.andDo(print())
