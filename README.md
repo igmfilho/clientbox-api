@@ -19,7 +19,7 @@ Build a REST API (ideally RESTful) with Spring boot which can manage the followi
 
 
 
-### Testing Scenarios
+### Scenario's steps
 
 1. Create a message from _`« Jérémie Durand »`_ with the following content: _`« Hello, I have an issue with my new phone »`_
 2. Create a client case, with the client name _`« Jérémie Durand »`_, and having the previously created message in its messages list.
@@ -28,6 +28,32 @@ Build a REST API (ideally RESTful) with Spring boot which can manage the followi
 5. Fetching of all client cases.
 The result will only contains one client case, the one we created before.
 
+
+## Built with
+- Spring boot : project packaging, embedded Tomcat server
+- Spring data rest : create RESTful repositories for our entities
+- Spring data jpa : manage database persistency
+- H2 database : in memory, embedded database
+- JUnit 5 : unit/integration tests
+
+## How to package?
+
+Maven 3 must be installed to package the application.
+You must open a terminal on the application main folder, and execute the following maven command:
+
+```
+mvn package
+```
+
+It will build the solution in the folder "target".
+
+To start the application, execute the commande:
+
+```
+java -jar clientbox-api-0.0.1-SNAPSHOT.jar
+```
+
+The application will be starting on port 8080.
 
 
 
